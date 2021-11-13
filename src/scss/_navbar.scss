@@ -1,0 +1,111 @@
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  padding: 15px 0;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  @media screen and (min-width: 1300px) {
+    padding: 35px 0;
+  }
+  &__wrapper {
+    @include flex-disp(wrap);
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    img {
+      width: 65%;
+      @media screen and (min-width: 1300px) {
+        width: auto;
+      }
+    }
+  }
+  &__links {
+    display: block;
+    list-style: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    text-align: center;
+    transition: max-height 0.4s ease-in-out;
+    &.expand {
+      max-height: 80vh;
+    }
+    @media screen and (min-width: 768px) {
+      @include flex-disp(wrap);
+      max-height: unset;
+      flex-direction: row;
+      justify-content: space-between;
+      flex: 0 0 70%;
+      max-width: 70%;
+      text-align: left;
+    }
+    @media screen and (min-width: 1024px) {
+      flex: 0 0 54%;
+      max-width: 54%;
+    }
+    &--single {
+      padding: 30px;
+      @media screen and (min-width: 768px) {
+        padding: 10px 0;
+      }
+    }
+  }
+  &.expand {
+    background: $theme_primary;
+  }
+  &.shrink {
+    padding: 10px 0;
+    .app-navbar-toggle {
+      .bar {
+        background-color: white;
+      }
+    }
+    .app-navbar__logo {
+      img {
+        width: 70%;
+      }
+    }
+  }
+}
+
+.app-navbar-toggle {
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+  .bar {
+    background-color: $theme_primary;
+  }
+  &.close {
+    .bar {
+      background: white;
+    }
+    .bar-1 {
+      -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+      transform: rotate(-45deg) translate(-9px, 6px);
+    }
+    .bar-2 {
+      opacity: 0;
+    }
+    .bar-3 {
+      -webkit-transform: rotate(45deg) translate(-8px, -8px);
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+  }
+
+  .bar-1,
+  .bar-2,
+  .bar-3 {
+    width: 35px;
+    height: 5px;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+}

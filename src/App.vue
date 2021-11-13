@@ -1,28 +1,61 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <navbar />
+    <slider />
+    <about />
+    <contact />
+    <appFooter />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+const navbar = () => import("./components/navbar");
+const slider = () => import("./components/slider");
+const about = () => import("./components/about");
+const contact = () => import("./components/contact");
+const appFooter = () => import("./components/appFooter");
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    navbar,
+    slider,
+    about,
+    contact,
+    appFooter,
   },
+  methods: {
+    handleLazySections() {
+      const sections = [...document.querySelectorAll('.lazy-asset.hidden')]
+      
+      const options = {
+        root: document,
+        threshold: 0
+      }
+
+      const onSectionsIntersect = (entries) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting) {
+              entry.target.classList.remove('hidden')
+            }
+        })
+      }
+
+      const sectionsObserver = new IntersectionObserver(onSectionsIntersect, options)
+      sections.forEach((section) => {
+        sectionsObserver.observe(section)
+      })
+    }
+  },
+  mounted() {
+    window.addEventListener('load', () => {
+      this.handleLazySections()
+    })
+  }
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
 }
 </style>

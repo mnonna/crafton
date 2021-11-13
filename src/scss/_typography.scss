@@ -1,0 +1,67 @@
+body,
+html,
+* {
+  font-family: "Muli";
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    color: black;
+  }
+}
+
+.app-heading {
+  &.app-heading__slide {
+    font-weight: 200;
+    font-size: 30px;
+    @media screen and (min-width: 768px) {
+      font-size: 36px;
+    }
+    @media screen and (min-width: 1300px) {
+      font-size: 40px;
+    }
+  }
+  &.app-heading__section {
+    font-weight: 800;
+    font-size: 26px;
+    @media screen and (min-width: 768px) {
+      font-size: 32px;
+    }
+    @media screen and (min-width: 1300px) {
+      font-size: 36px;
+    }
+  }
+  &.app-heading__form {
+    font-size: 16px;
+    @media screen and (min-width: 1300px) {
+      font-size: 18px;
+    }
+  }
+}
+
+.app-text {
+  &.app-text__button {
+    font-size: 12px;
+    font-weight: 800;
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+    }
+  }
+  &.app-text__small {
+    font-size: 15px;
+  }
+  &.app-text__consent {
+    font-size: 10px;
+    line-height: 16px;
+    padding: 0 25px 0 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}

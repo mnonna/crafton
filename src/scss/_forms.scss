@@ -1,0 +1,70 @@
+input,
+textarea {
+  &:focus-visible {
+    outline: none;
+    @include input_shadow();
+  }
+}
+
+.app-form {
+  margin: 0 auto;
+  &.app-form__contact {
+    @media screen and (min-width: 1024px) {
+      width: 500px;
+    }
+    @media screen and (min-width: 1300px) {
+      width: 580px;
+    }
+  }
+  &__inputs {
+    margin: 30px -15px 0 -15px;
+  }
+  &__submit {
+    @include flex-center();
+  }
+}
+
+.form-group {
+  margin: 10px 0;
+  &__input {
+    position: relative;
+  }
+  &__checkbox {
+    @include flex-disp();
+  }
+}
+
+.app-label {
+  display: none;
+  position: absolute;
+  font-size: 11px;
+  left: 15px;
+  top: 5px;
+  &.focused {
+    display: block;
+  }
+  &__checkbox {
+    display: block;
+    position: static;
+    margin: 0 13px 0 0;
+  }
+}
+
+.app-input {
+  width: 100%;
+  min-height: 45px;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  &.focused {
+    padding-top: 20px;
+  }
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-height: unset;
+  padding: 0;
+}

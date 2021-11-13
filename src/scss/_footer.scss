@@ -1,0 +1,56 @@
+.app-footer {
+  padding: 80px 0;
+  &__menus {
+    @include flex-disp(wrap);
+    @media screen and (min-width: 1300px) {
+        justify-content: space-between;
+    }
+    ul {
+      list-style: none;
+    }
+    margin: 45px 0 0 0;
+    @media screen and (min-width: 1024px) {
+      margin: 0;
+    }
+  }
+  &__map {
+    margin: 45px 0 0 0;
+    iframe {
+      width: 100%;
+      max-width: 199px;
+      max-height: 199px;
+    }
+  }
+  &__contact {
+    p {
+      margin: 0 0 10px 0;
+    }
+  }
+  &__author {
+    @include flex-disp();
+    justify-content: flex-end;
+    margin: 100px 0 0 0;
+  }
+}
+
+.footer-menu {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin: 10px 0;
+  @media screen and (min-width: 360px) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  @media screen and (min-width: 768px) {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+  @media screen and (min-width: 1300px) {
+    flex: unset;
+    max-width: unset;
+  }
+  &__name,
+  &__item {
+    margin: 0 0 20px 0;
+  }
+}

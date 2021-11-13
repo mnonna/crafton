@@ -1,0 +1,97 @@
+$font_path: "~@/assets/fonts";
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-Italic.ttf");
+  font-style: italic;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-BoldItalic.ttf");
+  font-style: italic;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-SemiBold.ttf");
+  font-style: normal;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-SemiBoldItalic.ttf");
+  font-style: italic;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-ExtraBold.ttf");
+  font-style: normal;
+  font-weight: 800;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-ExtraBoldItalic.ttf");
+  font-style: italic;
+  font-weight: 800;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-LightItalic.ttf");
+  font-style: italic;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-ExtraLight.ttf");
+  font-style: normal;
+  font-weight: 200;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url($font_path+"/muli/Muli-ExtraLightItalic.ttf");
+  font-style: italic;
+  font-weight: 200;
+  text-rendering: optimizeLegibility;
+}

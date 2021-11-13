@@ -1,0 +1,76 @@
+.color {
+  &__primary {
+    color: $theme_primary;
+  }
+  &__secondary {
+    color: $theme_secondary;
+  }
+  &__azure {
+    color: $theme_azure_blue;
+  }
+  &__white {
+    color: white;
+  }
+}
+
+.bg {
+  &__primary {
+    background: $theme_primary;
+  }
+  &__transparent {
+    background: transparent;
+  }
+  &__yellow {
+    background: $theme_yellow;
+  }
+  &__white {
+    background: white;
+  }
+  &__azure {
+    background: $theme_azure_blue;
+  }
+  &__themeLight {
+    background: $theme_light_blue;
+  }
+}
+
+.border {
+  &__none {
+    border: none;
+  }
+  &__style {
+    &--solid {
+      border-style: solid;
+    }
+  }
+  &__color {
+    &--white {
+      border-color: white;
+    }
+  }
+}
+
+.weight {
+  &__regular {
+    font-weight: 400;
+  }
+  &__semiBold {
+    font-weight: 600;
+  }
+  &__bold {
+    font-weight: 700;
+  }
+  &__extraBold {
+    font-weight: 800;
+  }
+}
+
+.lazy-asset {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
