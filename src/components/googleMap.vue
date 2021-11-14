@@ -256,4 +256,14 @@ export default {
   width: 200px;
   height: 200px;
 }
+//Hiding google maps iframe bottom bar with copyright
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
 </style>

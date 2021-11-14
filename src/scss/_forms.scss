@@ -82,7 +82,8 @@ input[type="checkbox"] {
       width: 16px;
       height: 16px;
       background: white;
-      z-index: 3
+      z-index: 3;
+      box-shadow: 0 0 2px rgba(0,0,0,.16);
     }
     &::after {
       content: '';
