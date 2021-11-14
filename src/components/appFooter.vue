@@ -4,16 +4,7 @@
       <div class="row">
         <div class="column-lg-3">
           <div class="app-footer__contact app-text app-text__small" v-html="footerData.contact"></div>
-          <div class="app-footer__map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.495936018867!2d16.929336115950314!3d52.415811151697575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47045b458e6d37f9%3A0x630f1e648e79b67!2sCollegium%20Da%20Vinci!5e0!3m2!1spl!2spl!4v1636815588172!5m2!1spl!2spl"
-              width="600"
-              height="450"
-              style="border:0;"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
-          </div>
+          <googleMap />
         </div>
         <div class="column-lg-9">
           <div class="app-footer__menus">
@@ -44,7 +35,11 @@
 </template>
 
 <script>
+const googleMap = () => import('./googleMap')
 export default {
+    components: {
+        googleMap
+    },
     data() {
         return {
             footerData: {
