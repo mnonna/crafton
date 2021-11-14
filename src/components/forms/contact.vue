@@ -11,11 +11,13 @@
           <input
             type="text"
             placeholder="Imię"
-            class="app-input"
+            class="app-input form-input"
+            v-model="form.name"
             @input="e => form.name = e.target.value"
             ref="contactName"
           />
         </div>
+        <span class="form-group__tip color__red" v-if="tips.name.show">{{ tips.name.text }}</span>
       </div>
       <div class="form-group column-lg-6">
         <div class="form-group__input">
@@ -23,11 +25,13 @@
           <input
             type="text"
             placeholder="Nazwisko"
-            class="app-input"
+            class="app-input form-input"
+            v-model="form.surname"
             @input="e => form.surname = e.target.value"
             ref="contactSurname"
           />
         </div>
+        <span class="form-group__tip color__red" v-if="tips.surname.show">{{ tips.surname.text }}</span>
       </div>
       <div class="form-group column-12">
         <div class="form-group__input">
@@ -35,11 +39,13 @@
           <input
             type="email"
             placeholder="Adres email"
-            class="app-input"
+            class="app-input form-input"
+            v-model="form.email"
             @input="e => form.email = e.target.value"
             ref="email"
           />
         </div>
+        <span class="form-group__tip color__red" v-if="tips.email.show">{{ tips.email.text }}</span>
       </div>
       <div class="form-group column-12">
         <div class="form-group__input">
@@ -49,17 +55,19 @@
             id
             cols="30"
             rows="10"
-            class="app-input"
+            class="app-input form-input"
             placeholder="Treść wiadomości"
+            v-model="form.message"
             @input="e => form.message = e.target.value"
             ref="contactMessage"
           ></textarea>
         </div>
+        <span class="form-group__tip color__red" v-if="tips.message.show">{{ tips.message.text }}</span>
       </div>
       <div class="form-group column-12">
         <div class="form-group__checkbox">
           <label for="consent" class="app-label app-label__checkbox">
-            <input id="consent" type="checkbox" v-model="form.consent" />
+            <input id="consent" class="form-input" type="checkbox" v-model="form.consent" />
           </label>
           <span class="app-text app-text__consent color__secondary weight__semiBold">
             Wyrażam zgodę na przetwarzanie moich danych osobowych
@@ -72,11 +80,15 @@
           </span>
         </div>
       </div>
-      <div class="form-group column-12" v-if="responseMessage !== null && responseMessage !== undefined">
+      <div
+        class="form-group column-12"
+        v-if="responseMessage !== null && responseMessage !== undefined"
+      >
         <div class="app-form__message text-center">
-          <span class="app-text app-text__small" :class="(responseMessage.success === true) ? 'color__green': 'color__red'">
-            {{ responseMessage.text }}
-          </span>
+          <span
+            class="app-text app-text__small"
+            :class="(responseMessage.success === true) ? 'color__green': 'color__red'"
+          >{{ responseMessage.text }}</span>
         </div>
       </div>
       <div class="form-group column-12">
@@ -104,6 +116,24 @@ export default {
                 consent: false,
                 isValid: false
             },
+            tips: {
+              name: {
+                show: false,
+                text: 'Proszę wypełnić imię'
+              },
+              surname: {
+                show: false,
+                text: 'Proszę wypełnić nazwisko'
+              },
+              email: {
+                show: false,
+                text: 'Proszę podać poprawny adres email'
+              },
+              message: {
+                show: false,
+                text: 'Proszę wypełnić wiadomość'
+              },
+            },
             responseMessage: null
         }
     },
@@ -112,8 +142,10 @@ export default {
             if(val === '') {
                this.$refs.contactName.style.border = "1px solid #FF3139"
                this.form.isValid = false
+               this.tips.name.show = true
             }else {
                 this.$refs.contactName.style.border = "none"
+                this.tips.name.show = false
                 if(this.form.surname == '' || this.form.email == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
                 }else {
@@ -125,8 +157,10 @@ export default {
             if(val === '') {
                this.$refs.contactSurname.style.border = "1px solid #FF3139"
                this.form.isValid = false
+               this.tips.surname.show = true
             }else {
                 this.$refs.contactSurname.style.border = "none"
+                this.tips.surname.show = false
                 if(this.form.name == '' || this.form.email == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
                 }else {
@@ -138,8 +172,10 @@ export default {
             if(!val.match(this.regex)) {
                this.$refs.email.style.border = "1px solid #FF3139"
                this.form.isValid = false
+               this.tips.email.show = true
             }else {
                 this.$refs.email.style.border = "none"
+                this.tips.email.show = false
                 if(this.form.name == '' || this.form.surname == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
                 }else {
@@ -151,8 +187,10 @@ export default {
             if(val === '') {
                this.$refs.contactMessage.style.border = "1px solid #FF3139"
                this.form.isValid = false
+               this.tips.message.show = true
             }else {
                 this.$refs.contactMessage.style.border = "none"
+                this.tips.message.show = false
                 if(this.form.name == '' || this.form.surname == '' || this.form.email == '' || this.form.consent == false) {
                     this.form.isValid = false
                 }else {
@@ -164,7 +202,6 @@ export default {
             if(val === false) {
                this.form.isValid = false
             }else {
-                this.$refs.email.style.border = "none"
                 if(this.form.name == '' || this.form.surname == '' || this.form.email == '' || this.form.contactMessage == false) {
                     this.form.isValid = false
                 }else {
@@ -184,7 +221,17 @@ export default {
             label.classList.remove('focused')
             e.target.classList.remove('focused')
         },
-        formSubmit() {
+        cleanForm(success, message) {
+          this.responseMessage = {
+            success: success,
+            text: message
+          }
+
+          setTimeout(function() {
+            this.responseMessage = null
+          }.bind(this), 3000)
+        },
+        async formSubmit() {
             if(!this.form.isValid) return
 
             this.responseMessage = null
@@ -193,21 +240,15 @@ export default {
               console.log(formData)
             })
 
-            fetch('contact.php', {
+            await fetch('contact.php', {
                 method: 'POST',
                 body: formData
             }).then((res) => res.json())
             .then((data) => 
-              this.responseMessage = {
-                success: true,
-                text: data.message
-              }
+              this.cleanForm(true, data.message)
             )
-            .catch((err)=> 
-              this.responseMessage = {
-                success: false,
-                text: 'Podczas wysłania wiadomości wystąpił błąd'
-              }
+            .catch((err)=>
+              this.cleanForm(false, "Podczas wysłania wiadomości wystąpił błąd")
             )
         }
     },

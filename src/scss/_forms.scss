@@ -4,6 +4,9 @@ textarea {
     outline: none;
     @include input_shadow();
   }
+  &:hover {
+    @include input_shadow();
+  }
 }
 
 .app-form {
@@ -31,6 +34,11 @@ textarea {
   }
   &__checkbox {
     @include flex-disp();
+  }
+  &__tip {
+    margin: 10px 0;
+    padding: 0 0 0 15px;
+    font-size: 11px;
   }
 }
 
@@ -63,6 +71,7 @@ textarea {
 }
 
 input[type="checkbox"] {
+  cursor: pointer;
   width: 16px;
   height: 16px;
   min-height: unset;
