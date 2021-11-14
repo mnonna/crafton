@@ -72,6 +72,13 @@
           </span>
         </div>
       </div>
+      <div class="form-group column-12" v-if="responseMessage !== null && responseMessage !== undefined">
+        <div class="app-form__message text-center">
+          <span class="app-text app-text__small" :class="(responseMessage.success === true) ? 'color__green': 'color__red'">
+            {{ responseMessage.text }}
+          </span>
+        </div>
+      </div>
       <div class="form-group column-12">
         <div class="app-form__submit">
           <button class="app-button color__white bg__azure border__none" :disabled="!form.isValid">
@@ -96,7 +103,8 @@ export default {
                 message: "",
                 consent: false,
                 isValid: false
-            }
+            },
+            responseMessage: null
         }
     },
     watch: {
@@ -179,6 +187,7 @@ export default {
         formSubmit() {
             if(!this.form.isValid) return
 
+            this.responseMessage = null
             const formData = new FormData();
             Array.from(this.form).forEach(key => {
               console.log(formData)
@@ -188,8 +197,18 @@ export default {
                 method: 'POST',
                 body: formData
             }).then((res) => res.json())
-            .then((data) =>  console.log(data))
-            .catch((err)=>console.error(err))
+            .then((data) => 
+              this.responseMessage = {
+                success: true,
+                text: data.message
+              }
+            )
+            .catch((err)=> 
+              this.responseMessage = {
+                success: false,
+                text: 'Podczas wysłania wiadomości wystąpił błąd'
+              }
+            )
         }
     },
     mounted() {
