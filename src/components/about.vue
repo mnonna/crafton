@@ -98,12 +98,34 @@ export default {
         &--img {
           background-size: cover;
           background-position: left 100%;
+          position: relative;
+          overflow: hidden;
+          &::after {
+            content: "Nowość";
+            font-family: "Muli";
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 5px 60px;
+            background: linear-gradient(
+              90deg,
+              rgba(0, 182, 220, 1) 0%,
+              rgba(0, 40, 65, 1) 50%,
+              rgba(0, 182, 220, 1) 100%
+            );
+            transform: rotate(315deg) translate(-60px, -30px);
+            z-index: 2;
+          }
         }
       }
     }
   }
   &:last-of-type {
-  .section-content {
+    .section-content {
       &__thumb {
         &--img {
           background-size: auto;
