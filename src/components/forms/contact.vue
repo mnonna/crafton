@@ -12,7 +12,7 @@
             type="text"
             placeholder="Imię"
             class="app-input"
-            v-model="form.name"
+            @input="e => form.name = e.target.value"
             ref="contactName"
           />
         </div>
@@ -24,7 +24,7 @@
             type="text"
             placeholder="Nazwisko"
             class="app-input"
-            v-model="form.surname"
+            @input="e => form.surname = e.target.value"
             ref="contactSurname"
           />
         </div>
@@ -36,7 +36,7 @@
             type="email"
             placeholder="Adres email"
             class="app-input"
-            v-model="form.email"
+            @input="e => form.email = e.target.value"
             ref="email"
           />
         </div>
@@ -51,7 +51,7 @@
             rows="10"
             class="app-input"
             placeholder="Treść wiadomości"
-            v-model="form.message"
+            @input="e => form.message = e.target.value"
             ref="contactMessage"
           ></textarea>
         </div>
@@ -222,4 +222,14 @@ export default {
 </script>
 
 <style lang="scss">
+//Hiding google maps iframe bottom bar with copyright
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
 </style>
