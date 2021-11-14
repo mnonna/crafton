@@ -62,20 +62,20 @@
             <input id="consent" type="checkbox" v-model="form.consent" />
           </label>
           <span class="app-text app-text__consent color__secondary weight__semiBold">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych
-              w rozumieniu ustawy z dnia 29 sierpnia 1997 roku o ochronie
-              danych osobowych oraz ustawy z dnia 16 lipca 2004 roku Prawo
-              telekomunikacyjne w celach marketingowych przez Collegium Da Vinci
-              i oświadczam, iż podanie przeze mnie danych osobowych jest
-              dobrowolne oraz iż zostałem poinformowany o prawie żądania dostępu
-              do moich danych osobowych, ich zmiany oraz usunięcia.
-            </span>
+            Wyrażam zgodę na przetwarzanie moich danych osobowych
+            w rozumieniu ustawy z dnia 29 sierpnia 1997 roku o ochronie
+            danych osobowych oraz ustawy z dnia 16 lipca 2004 roku Prawo
+            telekomunikacyjne w celach marketingowych przez Collegium Da Vinci
+            i oświadczam, iż podanie przeze mnie danych osobowych jest
+            dobrowolne oraz iż zostałem poinformowany o prawie żądania dostępu
+            do moich danych osobowych, ich zmiany oraz usunięcia.
+          </span>
         </div>
       </div>
       <div class="form-group column-12">
         <div class="app-form__submit">
           <button class="app-button color__white bg__azure border__none" :disabled="!form.isValid">
-              <span class="app-text app-text__button weight__extraBold">Wyślij</span>
+            <span class="app-text app-text__button weight__extraBold">Wyślij</span>
           </button>
         </div>
       </div>
@@ -179,7 +179,17 @@ export default {
         formSubmit() {
             if(!this.form.isValid) return
 
-            console.log('form valid')
+            const formData = new FormData();
+            Array.from(this.form).forEach(key => {
+              console.log(formData)
+            })
+
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            }).then((res) => res.json())
+            .then((data) =>  console.log(data))
+            .catch((err)=>console.error(err))
         }
     },
     mounted() {
