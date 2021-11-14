@@ -1,5 +1,10 @@
 # crafton
 
+## Google api key
+```
+Google api key is set in .env file (VUE_APP_GOOGLE_API_KEY=key)
+```
+
 ## Project setup
 ```
 npm install
