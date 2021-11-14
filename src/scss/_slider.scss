@@ -63,6 +63,8 @@
       display: block;
     }
     @media screen and (min-width: 1400px) {
+      top: 53%;
+      transform: translate(0, -53%);
       right: 100px;
     }
   }
