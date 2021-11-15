@@ -2,9 +2,13 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 
-$requestBody = file_get_contents('php://input');
+$request = [];
+foreach($_POST as $prop => $value){
+    $request[$prop] = json_decode($value);
+}
+
 $data = array(
-    "data" => json_decode($requestBody),
+    "data" => $request,
     "message" => "Dziękujemy za kontakt"
 );
 echo json_encode($data);

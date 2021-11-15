@@ -236,9 +236,7 @@ export default {
 
             this.responseMessage = null
             const formData = new FormData()
-            Object.keys(this.form).forEach(key => formData.append(key, this.form[key]));
-
-            console.log(formData)
+            Object.keys(this.form).forEach(key => formData.append(key, JSON.stringify(this.form[key])));
 
             await fetch('contact.php', {
                 method: 'POST',
