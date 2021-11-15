@@ -235,10 +235,10 @@ export default {
             if(!this.form.isValid) return
 
             this.responseMessage = null
-            const formData = new FormData();
-            Array.from(this.form).forEach(key => {
-              console.log(formData)
-            })
+            const formData = new FormData()
+            Object.keys(this.form).forEach(key => formData.append(key, this.form[key]));
+
+            console.log(formData)
 
             await fetch('contact.php', {
                 method: 'POST',
