@@ -1,0 +1,145 @@
+@import "./breakpoints";
+@import "./media";
+
+@mixin img_shadow() {
+  box-shadow: 0 0 11px $theme_shadow;
+}
+
+@mixin input_shadow() {
+  box-shadow: 0 0 8px $input_shadow;
+}
+
+@mixin modal_bg() {
+  background: $modal_bg;
+  backdrop-filter: blur(5px);
+}
+
+@mixin flex-disp($wrap: nowrap) {
+  display: flex;
+  flex-wrap: $wrap;
+}
+
+@mixin make-col-ready($gutter: $grid-gutter-width) { //entry styles for column
+  position: relative;
+  width: 100%;
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+}
+
+@mixin make-col($size, $columns: $grid-columns) { // flex column of given grid width
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+@mixin make-col-auto() { // auto flex column
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) { // columns offset
+  $num: $size / $columns;
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+// Generating column order classes based on breakpoints and col num
+@mixin make-grid-orders($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @if $grid-row-columns > 0 {
+        @for $i from 1 through $grid-row-columns {
+          .col-order#{$infix}-#{$i} {
+            order: $i;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Columns generating mixin
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties - mixin use only
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @if $columns > 0 {
+      @for $i from 1 through $columns {
+        .column#{$infix}-#{$i} {
+          @extend %grid-column;
+        }
+      }
+    }
+
+    .column#{$infix},
+    .column#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .column#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+
+      .column#{$infix}-auto {
+        @include make-col-auto();
+      }
+
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .column#{$infix}-#{$i} {
+            @include make-col($i, $columns);
+          }
+        }
+      }
+
+      .order#{$infix}-first {
+        order: -1;
+      }
+
+      .order#{$infix}-last {
+        order: $columns + 1;
+      }
+
+      @for $i from 0 through $columns {
+        .order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+
+      @if $columns > 0 {
+        @for $i from 0 through ($columns - 1) {
+          @if not($infix == "" and $i == 0) {
+            .offset#{$infix}-#{$i} {
+              @include make-col-offset($i, $columns);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/// flex-center mixin
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-column() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

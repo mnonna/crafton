@@ -140,11 +140,11 @@ export default {
     watch: {
         'form.name': function(val) {
             if(val === '') {
-               this.$refs.contactName.style.border = "1px solid #FF3139"
+               this.$refs.contactName.classList.add('invalid')
                this.form.isValid = false
                this.tips.name.show = true
             }else {
-                this.$refs.contactName.style.border = "none"
+                this.$refs.contactName.classList.remove('invalid')
                 this.tips.name.show = false
                 if(this.form.surname == '' || this.form.email == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
@@ -155,11 +155,11 @@ export default {
         },
         'form.surname': function(val) {
             if(val === '') {
-               this.$refs.contactSurname.style.border = "1px solid #FF3139"
+               this.$refs.contactSurname.classList.add('invalid')
                this.form.isValid = false
                this.tips.surname.show = true
             }else {
-                this.$refs.contactSurname.style.border = "none"
+                this.$refs.contactSurname.classList.remove('invalid')
                 this.tips.surname.show = false
                 if(this.form.name == '' || this.form.email == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
@@ -170,11 +170,11 @@ export default {
         },
         'form.email': function(val) {
             if(!val.match(this.regex)) {
-               this.$refs.email.style.border = "1px solid #FF3139"
+               this.$refs.email.classList.add('invalid')
                this.form.isValid = false
                this.tips.email.show = true
             }else {
-                this.$refs.email.style.border = "none"
+                this.$refs.email.classList.remove('invalid')
                 this.tips.email.show = false
                 if(this.form.name == '' || this.form.surname == '' || this.form.message == '' || this.form.consent == false) {
                     this.form.isValid = false
@@ -185,11 +185,11 @@ export default {
         },
         'form.message': function(val) {
             if(val === '') {
-               this.$refs.contactMessage.style.border = "1px solid #FF3139"
+               this.$refs.contactMessage.classList.add('invalid')
                this.form.isValid = false
                this.tips.message.show = true
             }else {
-                this.$refs.contactMessage.style.border = "none"
+                this.$refs.contactMessage.classList.remove('invalid')
                 this.tips.message.show = false
                 if(this.form.name == '' || this.form.surname == '' || this.form.email == '' || this.form.consent == false) {
                     this.form.isValid = false

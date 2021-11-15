@@ -17,20 +17,8 @@ $theme_shadow: rgba(95, 95, 95, 22%);
 $theme_light_blue: #f5f8fa;
 
 $input_shadow: rgba(145, 154, 159, 16%);
+$input_invalid: #FF3139;
 $modal_bg: rgba(0, 0, 0, 0.5);
 $navbar_blurred: rgba(0, 25, 39, .6);
 
 $button_play_bg: rgba(0, 182, 220, .2);
-
-@mixin img_shadow() {
-  box-shadow: 0 0 11px $theme_shadow;
-}
-
-@mixin input_shadow() {
-  box-shadow: 0 0 8px $input_shadow;
-}
-
-@mixin modal_bg() {
-  background: $modal_bg;
-  backdrop-filter: blur(5px);
-}

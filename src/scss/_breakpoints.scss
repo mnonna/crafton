@@ -1,22 +1,22 @@
 // Breakpoint viewport sizes and media queries.
 @function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-    $n: index($breakpoint-names, $name);
-    @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
-  }
-  
-  // Minimum breakpoint width. Null for the smallest (first) breakpoint.
-  @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-    $min: map-get($breakpoints, $name);
-    @return if($min != 0, $min, null);
-  }
-  
-  // Maximum breakpoint width. Null for the largest (last) breakpoint.
-  @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-    $next: breakpoint-next($name, $breakpoints);
-    @return if($next, breakpoint-min($next, $breakpoints) - .02, null);
-  }
-  
-  // Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
-  @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-    @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
-  }
+  $n: index($breakpoint-names, $name);
+  @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// Minimum width for given breakpoint
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+// Maximum width for given breakpoint
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+// Smallest breakpoint - blank, others - dash and breakpoint name
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}

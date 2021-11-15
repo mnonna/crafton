@@ -1,4 +1,4 @@
-// Media of at least the minimum breakpoint width.
+// Media minimum breakpoint width and above.
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   @if $min {

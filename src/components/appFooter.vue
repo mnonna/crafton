@@ -24,7 +24,11 @@
           <div class="row">
             <div class="column-12">
               <div class="app-footer__author">
-                <span class="app-text app-text__small color__white">Projekt i realizacja: Crafton</span>
+                <span class="app-text app-text__small color__white">
+                    Projekt i realizacja: <a href="https://crafton.pl/" target="_blank">
+                        <span class="color__white">Crafton</span>
+                    </a>
+                </span>
               </div>
             </div>
           </div>

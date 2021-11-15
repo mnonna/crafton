@@ -7,6 +7,11 @@
     }
     ul {
       list-style: none;
+      a {
+        &:hover {
+          border-bottom: 1px solid white;
+        }
+      }
     }
     margin: 45px 0 0 0;
     @media screen and (min-width: 1024px) {
@@ -15,11 +20,6 @@
   }
   &__map {
     margin: 45px 0 0 0;
-    /*iframe {
-      width: 100%;
-      max-width: 199px;
-      max-height: 199px;
-    }*/
   }
   &__contact {
     p {

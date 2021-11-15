@@ -74,7 +74,7 @@ export default {
     data() {
         return {
             currentSlide: 0,
-            slidesArr: [
+            slidesArr: [ //Array simulating retrieving data from backend
                 {
                     id: 1,
                     image: 'slide1.jpg',
